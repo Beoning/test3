@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/test3/static/css/main.7e0fa7ee.chunk.css",
+    "main.js": "/test3/static/js/main.1978272d.chunk.js",
+    "main.js.map": "/test3/static/js/main.1978272d.chunk.js.map",
+    "runtime-main.js": "/test3/static/js/runtime-main.f05d8847.js",
+    "runtime-main.js.map": "/test3/static/js/runtime-main.f05d8847.js.map",
+    "static/js/2.2d414b13.chunk.js": "/test3/static/js/2.2d414b13.chunk.js",
+    "static/js/2.2d414b13.chunk.js.map": "/test3/static/js/2.2d414b13.chunk.js.map",
+    "index.html": "/test3/index.html",
+    "static/css/main.7e0fa7ee.chunk.css.map": "/test3/static/css/main.7e0fa7ee.chunk.css.map",
+    "static/js/2.2d414b13.chunk.js.LICENSE.txt": "/test3/static/js/2.2d414b13.chunk.js.LICENSE.txt",
+    "static/media/LoginPage.module.css": "/test3/static/media/background.161e65e6.png",
+    "static/media/pictureOne.dade608f.png": "/test3/static/media/pictureOne.dade608f.png",
+    "static/media/pictureThree.d704bdeb.png": "/test3/static/media/pictureThree.d704bdeb.png",
+    "static/media/pictureTwo.a43855c6.png": "/test3/static/media/pictureTwo.a43855c6.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f05d8847.js",
+    "static/js/2.2d414b13.chunk.js",
+    "static/css/main.7e0fa7ee.chunk.css",
+    "static/js/main.1978272d.chunk.js"
+  ]
+}
