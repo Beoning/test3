@@ -1,0 +1,40 @@
+.fav {
+  display: flex;
+  flex-direction: column;
+  width: 296px;
+  align-items: flex-start;
+  padding: 32px;
+  background: #ffffff;
+  box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  margin-top: 30px;
+}
+
+.fav h2 {
+  margin: 0;
+}
+
+.btnWrapper {
+  padding: 20px 0;
+}
+
+.btn {
+  border: 1px solid #e5e5e5;
+  width: 89px;
+  height: 28px;
+  background: #ffffff;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin: 0 10px 0 0;
+  color: #e5e5e5;
+}
+
+.btn:active,
+.btn:focus {
+  outline: none;
+  border: 1px solid #41522e;
+  color: #41522e;
+}
+.btn::-moz-focus-inner {
+  border: 0;
+}

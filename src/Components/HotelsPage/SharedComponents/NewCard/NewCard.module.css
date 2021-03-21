@@ -1,0 +1,21 @@
+.newCard {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(135, 135, 135, 0.2);
+}
+
+.back {
+  height: 84px;
+  width: 84px;
+  background: url("../../../../img/ellipse.png") no-repeat;
+  background-position: center;
+  background-size: 74px 74px;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  border: none;
+}
