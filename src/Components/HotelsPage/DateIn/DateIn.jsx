@@ -12,7 +12,12 @@ const DateIn = () => {
   const dispatch = useDispatch();
   return (
     <div className={style.date}>
-      <form className={style.form}>
+      <form
+        className={style.form}
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <label className={style.label}>
           Локация <br />
           <input

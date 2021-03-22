@@ -8,11 +8,11 @@ function App() {
   const loggedIn = useSelector((state) => state.auth.isAuth);
   return (
     <div>
-      <Route path="/login">
+      <Route path="/">
         {JSON.parse(loggedIn) ? <Redirect to="/hotels" /> : <LoginPage />}
       </Route>
       <Route path="/hotels">
-        {!JSON.parse(loggedIn) ? <Redirect to="/login" /> : <HotelsPage />}
+        {!JSON.parse(loggedIn) ? <Redirect to="/" /> : <HotelsPage />}
       </Route>
     </div>
   );
