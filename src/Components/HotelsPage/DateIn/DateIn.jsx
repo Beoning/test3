@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { newHotel } from "../../../redux/reducers/hotels-reducer";
+import {
+  newHotel,
+  selectDate,
+  selectDays,
+  selectLocation,
+} from "../../../redux/reducers/hotels-reducer";
 import style from "./DateIn.module.css";
 
 const DateIn = () => {
-  const [location, setLocation] = useState(
-    useSelector((state) => state.hotels.location)
-  );
-  const [date, setdate] = useState(useSelector((state) => state.hotels.date));
-  const [days, setDays] = useState(useSelector((state) => state.hotels.days));
+  const [location, setLocation] = useState(useSelector(selectLocation));
+  const [date, setdate] = useState(useSelector(selectDate));
+  const [days, setDays] = useState(useSelector(selectDays));
   const dispatch = useDispatch();
   return (
     <div className={style.date}>
@@ -49,7 +52,7 @@ const DateIn = () => {
         </label>
         <button
           className={style.btn}
-          onClick={() => dispatch(newHotel([location, date, days]))}
+          onClick={() => dispatch(newHotel({ location, date, days }))}
         >
           Найти
         </button>
