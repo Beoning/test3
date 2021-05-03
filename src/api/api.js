@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const instance = Axios.create({
-  baseURL: `http://engine.hotellook.com/api/v2/`,
+  baseURL: `https://engine.hotellook.com/api/v2/`,
 });
 
 export const hotelsApi = {
