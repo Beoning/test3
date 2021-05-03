@@ -1,12 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { hotelsApi } from "../../api/api";
 
 let currentDate = new Date();
 let year = currentDate.getFullYear();
 let month = currentDate.getMonth() + 1;
 let day = currentDate.getUTCDate();
-let fulldate = `${year}-${month < 10 ? "0" + month : month}-${day}`;
+let fulldate = `${year}-${month < 10 ? "0" + month : month}-${
+  day < 10 ? "0" + day : day
+}`;
 
-const searchHotels = createAsyncThunk();
+export const searchHotels = createAsyncThunk("hotels/fetchHotels", async () => {
+  const response = await hotelsApi.getHotels();
+  console.log(response);
+  return response.results.hotels;
+});
 
 const initialState = {
   location: "Москва",
@@ -33,6 +40,11 @@ const hotelsSlice = createSlice({
       },
     },
   },
+  extraReducers: {
+    [searchHotels.fulfilled]: (state, action) => {
+      state.hotels = action.payload;
+    },
+  },
 });
 
 export const { newHotel } = hotelsSlice.actions;
@@ -40,5 +52,6 @@ export const { newHotel } = hotelsSlice.actions;
 export const selectLocation = (state) => state.hotels.location;
 export const selectDate = (state) => state.hotels.date;
 export const selectDays = (state) => state.hotels.days;
+export const selectHotels = (state) => state.hotels.hotels;
 
 export default hotelsSlice.reducer;

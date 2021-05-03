@@ -13,14 +13,14 @@ const DateIn = () => {
   const [date, setdate] = useState(useSelector(selectDate));
   const [days, setDays] = useState(useSelector(selectDays));
   const dispatch = useDispatch();
+
+  const submit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className={style.date}>
-      <form
-        className={style.form}
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <form className={style.form} onSubmit={submit}>
         <label className={style.label}>
           Локация <br />
           <input

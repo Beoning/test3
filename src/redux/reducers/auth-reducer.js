@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  email: null || localStorage.email,
-  password: null || localStorage.password,
-  isAuth: JSON.parse(localStorage.isAuth),
+  email: localStorage.email || null,
+  password: localStorage.password || null,
+  isAuth: JSON.parse(localStorage.isAuth || false),
 };
 
 const authSlice = createSlice({
@@ -13,12 +13,13 @@ const authSlice = createSlice({
     auth: (state, action) => {
       state.email = localStorage.email = action.payload.email;
       state.password = localStorage.password = action.payload.password;
-      state.isAuth = localStorage.isAuth = true;
+      state.isAuth = Boolean((localStorage.isAuth = "true"));
     },
     logout: (state) => {
       state.email = null;
       state.password = null;
-      state.isAuth = localStorage.isAuth = false;
+      state.isAuth = false;
+      localStorage.clear();
     },
   },
 });

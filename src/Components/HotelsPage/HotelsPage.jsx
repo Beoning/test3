@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./HotelsPage.module.css";
 import DateIn from "./DateIn/DateIn";
 import Hotels from "./Hotels/Hotels";
@@ -8,9 +8,13 @@ import Vector2 from "../../img/Vector2.png";
 import Vector3 from "../../img/Vector3.png";
 import { logout } from "../../redux/reducers/auth-reducer";
 import { useDispatch } from "react-redux";
+import { searchHotels } from "../../redux/reducers/hotels-reducer";
 
 const HotelsPage = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(searchHotels());
+  });
   return (
     <div className={style.hotelsPage}>
       <nav className={style.nav}>

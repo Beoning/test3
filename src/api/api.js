@@ -5,14 +5,11 @@ const instance = Axios.create({
 });
 
 export const hotelsApi = {
-  hotels: "",
   getHotels() {
     return instance
       .get(`lookup.json?query=moscow&lang=ru&lookFor=both&limit=10`)
       .then((response) => {
-        return (this.hotels = response.data);
+        return response.data;
       });
   },
 };
-
-console.log(hotelsApi.hotels);

@@ -4,14 +4,14 @@ import star from "../../../../img/star.png";
 import heart from "../../../../img/heart.png";
 import { useSelector } from "react-redux";
 
-const Card = () => {
+const Card = (props) => {
   const date = useSelector((state) => state.hotels.date);
   const days = useSelector((state) => state.hotels.days);
   const name = useSelector((state) => state.hotels.name);
   return (
     <div className={style.card}>
       <div className={style.name}>
-        <p>{name}</p>
+        <p>{props.fullname || name}</p>
         <button>
           <img src={heart} alt="" />
         </button>
