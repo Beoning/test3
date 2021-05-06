@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addFavoriteHotel,
   removeFavoriteHotel,
+  selcetDays,
   selectDate,
   selectFavorite,
 } from "../../../../redux/reducers/hotels-reducer";
@@ -14,6 +15,7 @@ const Card = (props) => {
   const dispatch = useDispatch();
   const favoriteHotel = useSelector(selectFavorite);
   const date = useSelector(selectDate);
+  const days = useSelector(selcetDays);
   const id = props.id;
   const toggle = () => {
     if (
@@ -35,7 +37,14 @@ const Card = (props) => {
         </button>
       </div>
       <div className={style.date}>
-        <p>{date}</p>- <span>{} день</span>
+        <p>{date}</p>-{" "}
+        <span>
+          {days === 1
+            ? days + " день"
+            : days < 5
+            ? days + " дня"
+            : days + " дней"}
+        </span>
       </div>
       <div className={style.score}>
         <div className={style.stars}>
@@ -47,7 +56,7 @@ const Card = (props) => {
         </div>
         <div className={style.price}>
           <p>Price:</p>
-          <span>{props.price}</span>
+          <span>{props.price} руб.</span>
         </div>
       </div>
     </div>

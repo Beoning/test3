@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchHotels } from "../../../redux/reducers/hotels-reducer";
+import { searchHotels, setdays } from "../../../redux/reducers/hotels-reducer";
 import style from "./DateIn.module.css";
 
 const DateIn = () => {
   let currentDate = new Date();
   let year = currentDate.getFullYear();
   let month = currentDate.getMonth() + 1;
-  let day = currentDate.getUTCDate();
+  let day = Number(currentDate.getUTCDate());
   let fulldate = `${year}-${month < 10 ? "0" + month : month}-${
     day < 10 ? "0" + day : day
   }`;
@@ -21,6 +21,8 @@ const DateIn = () => {
 
   const submit = (e) => {
     e.preventDefault();
+    dispatch(setdays(days));
+    dispatch(searchHotels({ location, date, newDate }));
   };
 
   return (
@@ -49,18 +51,13 @@ const DateIn = () => {
         <label className={style.label}>
           Количество дней <br />
           <input
-            type="text"
+            type="number"
             value={days}
             onChange={(e) => setDays(e.target.value)}
             className={style.input}
           />
         </label>
-        <button
-          className={style.btn}
-          onClick={() => dispatch(searchHotels({ location, date, newDate }))}
-        >
-          Найти
-        </button>
+        <button className={style.btn}>Найти</button>
       </form>
     </div>
   );

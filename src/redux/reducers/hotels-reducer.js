@@ -21,6 +21,7 @@ const initialState = {
   error: "",
   location: "",
   date: fulldate,
+  days: 1,
   hotels: [],
   favorite: [],
 };
@@ -29,6 +30,9 @@ const hotelsSlice = createSlice({
   name: "hotels",
   initialState,
   reducers: {
+    setdays: (state, action) => {
+      state.days = action.payload;
+    },
     addFavoriteHotel: (state, action) => {
       if (
         state.favorite.includes(
@@ -62,6 +66,7 @@ const hotelsSlice = createSlice({
 export const {
   newHotel,
   addFavoriteHotel,
+  setdays,
   removeFavoriteHotel,
 } = hotelsSlice.actions;
 
@@ -69,5 +74,6 @@ export const selectHotels = (state) => state.hotels.hotels;
 export const selectFavorite = (state) => state.hotels.favorite;
 export const selectLocation = (state) => state.hotels.location;
 export const selectDate = (state) => state.hotels.date;
+export const selcetDays = (state) => state.hotels.days;
 
 export default hotelsSlice.reducer;
