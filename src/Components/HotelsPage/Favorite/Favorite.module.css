@@ -19,24 +19,39 @@
   display: flex;
 }
 
-.btn {
+.btn:not(:active) {
+  border: 1px solid #e5e5e5;
+  color: #e5e5e5;
+}
+
+.btnWhite {
+  border: 1px solid #e5e5e5;
+  color: #e5e5e5;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid #e5e5e5;
   width: 89px;
   height: 28px;
   background: #ffffff;
   box-sizing: border-box;
   border-radius: 4px;
   margin: 0 10px 0 0;
-  color: #e5e5e5;
   cursor: pointer;
 }
 
-.btn:not(:active) {
-  border: 1px solid #e5e5e5;
-  color: #e5e5e5;
+.btnGreen {
+  border: 1px solid #41522e;
+  color: #41522e;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 89px;
+  height: 28px;
+  background: #ffffff;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin: 0 10px 0 0;
+  cursor: pointer;
 }
 
 .select {
@@ -44,12 +59,14 @@
   flex-direction: column;
 }
 
-.btn:active,
-.btn:focus {
-  outline: none;
-  border: 1px solid #41522e;
-  color: #41522e;
+.green path {
+  fill: #41522e;
 }
+
+.white path {
+  fill: #e5e5e5;
+}
+
 .btn::-moz-focus-inner {
   border: 0;
 }
