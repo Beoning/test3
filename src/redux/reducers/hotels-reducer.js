@@ -1,6 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { hotelsApi } from "../../api/api";
 
+export const searchHotels = createAsyncThunk(
+  "hotels/fetchHotels",
+  async ({ location, date, newDate }) => {
+    const response = await hotelsApi.getHotels({ location, date, newDate });
+    return response;
+  }
+);
+
 let currentDate = new Date();
 let year = currentDate.getFullYear();
 let month = currentDate.getMonth() + 1;
@@ -9,17 +17,10 @@ let fulldate = `${year}-${month < 10 ? "0" + month : month}-${
   day < 10 ? "0" + day : day
 }`;
 
-export const searchHotels = createAsyncThunk("hotels/fetchHotels", async () => {
-  const response = await hotelsApi.getHotels();
-  console.log(response);
-  return response.results.hotels;
-});
-
 const initialState = {
-  location: "Москва",
+  error: "",
+  location: "",
   date: fulldate,
-  days: "1",
-  name: "Moscow Marriott Grand Hotel",
   hotels: [],
   favorite: [],
 };
@@ -28,40 +29,32 @@ const hotelsSlice = createSlice({
   name: "hotels",
   initialState,
   reducers: {
-    newHotel: {
-      reducer: (state, action) => {
-        state.location = action.payload.location;
-        state.date = action.payload.date;
-        state.days = action.payload.days;
-      },
-      prepare: (obj) => {
-        return {
-          payload: { location: obj.location, date: obj.date, days: obj.days },
-        };
-      },
-    },
     addFavoriteHotel: (state, action) => {
       if (
         state.favorite.includes(
-          state.favorite.filter((item) => item.id === action.payload)[0]
+          state.favorite.filter((item) => item.hotelId === action.payload)[0]
         )
       ) {
         return state;
       } else {
         state.favorite.push(
-          state.hotels.filter((hotel) => hotel.id === action.payload)[0]
+          state.hotels.filter((hotel) => hotel.hotelId === action.payload)[0]
         );
       }
     },
     removeFavoriteHotel: (state, action) => {
       state.favorite = state.favorite.filter(
-        (item) => item.id !== action.payload
+        (item) => item.hotelId !== action.payload
       );
     },
   },
   extraReducers: {
     [searchHotels.fulfilled]: (state, action) => {
       state.hotels = action.payload;
+      state.location = action.payload[0].location.name;
+    },
+    [searchHotels.rejected]: (state, action) => {
+      state.error = action.error;
     },
   },
 });
@@ -72,10 +65,9 @@ export const {
   removeFavoriteHotel,
 } = hotelsSlice.actions;
 
-export const selectLocation = (state) => state.hotels.location;
-export const selectDate = (state) => state.hotels.date;
-export const selectDays = (state) => state.hotels.days;
 export const selectHotels = (state) => state.hotels.hotels;
 export const selectFavorite = (state) => state.hotels.favorite;
+export const selectLocation = (state) => state.hotels.location;
+export const selectDate = (state) => state.hotels.date;
 
 export default hotelsSlice.reducer;

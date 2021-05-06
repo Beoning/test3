@@ -6,19 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addFavoriteHotel,
   removeFavoriteHotel,
+  selectDate,
   selectFavorite,
 } from "../../../../redux/reducers/hotels-reducer";
 
 const Card = (props) => {
   const dispatch = useDispatch();
   const favoriteHotel = useSelector(selectFavorite);
-  const date = useSelector((state) => state.hotels.date);
-  const days = useSelector((state) => state.hotels.days);
-  const name = useSelector((state) => state.hotels.name);
+  const date = useSelector(selectDate);
   const id = props.id;
   const toggle = () => {
     if (
-      favoriteHotel.includes(favoriteHotel.filter((item) => item.id === id)[0])
+      favoriteHotel.includes(
+        favoriteHotel.filter((item) => item.hotelId === id)[0]
+      )
     ) {
       dispatch(removeFavoriteHotel(id));
     } else {
@@ -28,13 +29,13 @@ const Card = (props) => {
   return (
     <div className={style.card}>
       <div className={style.name}>
-        <p>{props.fullname || name}</p>
+        <p>{props.fullname}</p>
         <button onClick={toggle}>
           <img src={heart} alt="" />
         </button>
       </div>
       <div className={style.date}>
-        <p>{date}</p>- <span>{days} день</span>
+        <p>{date}</p>- <span>{} день</span>
       </div>
       <div className={style.score}>
         <div className={style.stars}>
@@ -46,7 +47,7 @@ const Card = (props) => {
         </div>
         <div className={style.price}>
           <p>Price:</p>
-          <span>23 924 ₽</span>
+          <span>{props.price}</span>
         </div>
       </div>
     </div>

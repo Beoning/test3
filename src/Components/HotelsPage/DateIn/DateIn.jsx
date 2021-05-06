@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  newHotel,
-  selectDate,
-  selectDays,
-  selectLocation,
-} from "../../../redux/reducers/hotels-reducer";
+import { useDispatch } from "react-redux";
+import { searchHotels } from "../../../redux/reducers/hotels-reducer";
 import style from "./DateIn.module.css";
 
 const DateIn = () => {
-  const [location, setLocation] = useState(useSelector(selectLocation));
-  const [date, setdate] = useState(useSelector(selectDate));
-  const [days, setDays] = useState(useSelector(selectDays));
+  let currentDate = new Date();
+  let year = currentDate.getFullYear();
+  let month = currentDate.getMonth() + 1;
+  let day = currentDate.getUTCDate();
+  let fulldate = `${year}-${month < 10 ? "0" + month : month}-${
+    day < 10 ? "0" + day : day
+  }`;
+  const [location, setLocation] = useState("Moscow");
+  const [date, setdate] = useState(fulldate);
+  const [days, setDays] = useState(1);
   const dispatch = useDispatch();
+  const newDate = `${year}-${month < 10 ? "0" + month : month}-${
+    day + days < 10 ? "0" + (day + days) : day + days
+  }`;
 
   const submit = (e) => {
     e.preventDefault();
@@ -52,7 +57,7 @@ const DateIn = () => {
         </label>
         <button
           className={style.btn}
-          onClick={() => dispatch(newHotel({ location, date, days }))}
+          onClick={() => dispatch(searchHotels({ location, date, newDate }))}
         >
           Найти
         </button>

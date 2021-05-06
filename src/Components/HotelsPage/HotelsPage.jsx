@@ -12,8 +12,20 @@ import { searchHotels } from "../../redux/reducers/hotels-reducer";
 
 const HotelsPage = () => {
   const dispatch = useDispatch();
+  let currentDate = new Date();
+  let year = currentDate.getFullYear();
+  let month = currentDate.getMonth() + 1;
+  let day = currentDate.getUTCDate();
+  let fulldate = `${year}-${month < 10 ? "0" + month : month}-${
+    day < 10 ? "0" + day : day
+  }`;
+  const newDate = `${year}-${month < 10 ? "0" + month : month}-${
+    day + 1 < 10 ? "0" + (day + 1) : day + 1
+  }`;
   useEffect(() => {
-    dispatch(searchHotels());
+    dispatch(
+      searchHotels({ location: "Moscow", date: fulldate, newDate: newDate })
+    );
   });
   return (
     <div className={style.hotelsPage}>

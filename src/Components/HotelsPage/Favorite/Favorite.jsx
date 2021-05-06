@@ -9,7 +9,12 @@ import { selectFavorite } from "../../../redux/reducers/hotels-reducer";
 const Favorite = () => {
   const favorite = useSelector(selectFavorite);
   const favoriteHotels = favorite.map((hotel) => (
-    <Card key={hotel.id} fullname={hotel.label} id={hotel.id} />
+    <Card
+      key={hotel.hotelId}
+      fullname={hotel.hotelName}
+      id={hotel.hotelId}
+      price={hotel.priceAvg}
+    />
   ));
   return (
     <div className={style.fav}>

@@ -7,7 +7,6 @@ import pictureThree from "../../../img/pictureThree.png";
 import NewCard from "../SharedComponents/NewCard/NewCard";
 import { useSelector } from "react-redux";
 import {
-  selectDate,
   selectFavorite,
   selectHotels,
   selectLocation,
@@ -16,9 +15,13 @@ import {
 const Hotels = () => {
   const favoriteHotelsCount = useSelector(selectFavorite).length;
   const location = useSelector(selectLocation);
-  const currentDate = useSelector(selectDate);
   const hotels = useSelector(selectHotels).map((hotel) => (
-    <NewCard fullname={hotel.label} key={hotel.id} id={hotel.id} />
+    <NewCard
+      fullname={hotel.hotelName}
+      key={hotel.hotelId}
+      id={hotel.hotelId}
+      price={hotel.priceAvg}
+    />
   ));
   return (
     <div className={style.hotels}>
@@ -28,7 +31,7 @@ const Hotels = () => {
           <img src={check} alt="" />
           <span>{location}</span>
         </div>
-        <span className={style.date}>{currentDate}</span>
+        <span className={style.date}>{}</span>
       </div>
       <div className={style.pictures}>
         <img src={pictureOne} alt="" />
