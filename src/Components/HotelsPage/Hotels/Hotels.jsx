@@ -16,7 +16,7 @@ const Hotels = () => {
   const location = useSelector(selectLocation);
   const currentDate = useSelector(selectDate);
   const hotels = useSelector(selectHotels).map((hotel) => (
-    <NewCard fullname={hotel.fullName} key={hotel.id} />
+    <NewCard fullname={hotel.label} key={hotel.id} />
   ));
   return (
     <div className={style.hotels}>
