@@ -51,9 +51,9 @@ const DateIn = () => {
         <label className={style.label}>
           Количество дней <br />
           <input
-            type="number"
+            type="text"
             value={days}
-            onChange={(e) => setDays(e.target.value)}
+            onChange={(e) => setDays(Number(e.target.value))}
             className={style.input}
           />
         </label>
