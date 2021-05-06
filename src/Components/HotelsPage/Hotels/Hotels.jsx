@@ -8,15 +8,17 @@ import NewCard from "../SharedComponents/NewCard/NewCard";
 import { useSelector } from "react-redux";
 import {
   selectDate,
+  selectFavorite,
   selectHotels,
   selectLocation,
 } from "../../../redux/reducers/hotels-reducer";
 
 const Hotels = () => {
+  const favoriteHotelsCount = useSelector(selectFavorite).length;
   const location = useSelector(selectLocation);
   const currentDate = useSelector(selectDate);
   const hotels = useSelector(selectHotels).map((hotel) => (
-    <NewCard fullname={hotel.label} key={hotel.id} />
+    <NewCard fullname={hotel.label} key={hotel.id} id={hotel.id} />
   ));
   return (
     <div className={style.hotels}>
@@ -37,7 +39,13 @@ const Hotels = () => {
       <div className={style.favorite}>
         <p>
           Добавлено в Избранное:
-          <span className={style.count}>3</span>отеля
+          <span className={style.count}>
+            {favoriteHotelsCount === 1
+              ? favoriteHotelsCount + " отель"
+              : favoriteHotelsCount < 5
+              ? favoriteHotelsCount + " отеля"
+              : favoriteHotelsCount + " отелей"}
+          </span>
         </p>
       </div>
       <div className={style.list}>{hotels}</div>

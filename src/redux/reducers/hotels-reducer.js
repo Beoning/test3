@@ -21,6 +21,7 @@ const initialState = {
   days: "1",
   name: "Moscow Marriott Grand Hotel",
   hotels: [],
+  favorite: [],
 };
 
 const hotelsSlice = createSlice({
@@ -39,6 +40,24 @@ const hotelsSlice = createSlice({
         };
       },
     },
+    addFavoriteHotel: (state, action) => {
+      if (
+        state.favorite.includes(
+          state.favorite.filter((item) => item.id === action.payload)[0]
+        )
+      ) {
+        return state;
+      } else {
+        state.favorite.push(
+          state.hotels.filter((hotel) => hotel.id === action.payload)[0]
+        );
+      }
+    },
+    removeFavoriteHotel: (state, action) => {
+      state.favorite = state.favorite.filter(
+        (item) => item.id !== action.payload
+      );
+    },
   },
   extraReducers: {
     [searchHotels.fulfilled]: (state, action) => {
@@ -47,11 +66,16 @@ const hotelsSlice = createSlice({
   },
 });
 
-export const { newHotel } = hotelsSlice.actions;
+export const {
+  newHotel,
+  addFavoriteHotel,
+  removeFavoriteHotel,
+} = hotelsSlice.actions;
 
 export const selectLocation = (state) => state.hotels.location;
 export const selectDate = (state) => state.hotels.date;
 export const selectDays = (state) => state.hotels.days;
 export const selectHotels = (state) => state.hotels.hotels;
+export const selectFavorite = (state) => state.hotels.favorite;
 
 export default hotelsSlice.reducer;

@@ -9,7 +9,7 @@ const NewCard = (props) => {
       <div className={style.back}>
         <img src={house} alt="" />
       </div>
-      <Card className={style.card} fullname={props.fullname} />
+      <Card className={style.card} fullname={props.fullname} id={props.id} />
     </div>
   );
 };
