@@ -52,6 +52,7 @@
 
 .pictures {
   display: flex;
+  align-items: center;
 }
 
 .favorite {

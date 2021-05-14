@@ -1,9 +1,6 @@
 import React from "react";
 import style from "./Hotels.module.css";
 import check from "../../../img/check.png";
-import pictureOne from "../../../img/pictureOne.png";
-import pictureTwo from "../../../img/pictureTwo.png";
-import pictureThree from "../../../img/pictureThree.png";
 import NewCard from "../SharedComponents/NewCard/NewCard";
 import { useSelector } from "react-redux";
 import {
@@ -11,6 +8,7 @@ import {
   selectHotels,
   selectLocation,
 } from "../../../redux/reducers/hotels-reducer";
+import Slider from "./Slider/Slider";
 
 const Hotels = () => {
   const favoriteHotelsCount = useSelector(selectFavorite).length;
@@ -35,10 +33,7 @@ const Hotels = () => {
         <span className={style.date}>{}</span>
       </div>
       <div className={style.pictures}>
-        <img src={pictureOne} alt="" />
-        <img src={pictureTwo} alt="" />
-        <img src={pictureThree} alt="" />
-        <img src={pictureThree} alt="" />
+        <Slider />
       </div>
       <div className={style.favorite}>
         <p>

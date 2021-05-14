@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { hotelsApi } from "../../api/api";
+import pictureOne from "../../img/pictureOne.png";
+import pictureTwo from "../../img/pictureTwo.png";
+import pictureThree from "../../img/pictureThree.png";
 
 export const searchHotels = createAsyncThunk(
   "hotels/fetchHotels",
@@ -18,6 +21,7 @@ let fulldate = `${year}-${month < 10 ? "0" + month : month}-${
 }`;
 
 const initialState = {
+  images: [pictureOne, pictureThree, pictureTwo, pictureThree],
   error: "",
   location: "",
   date: fulldate,
@@ -127,5 +131,6 @@ export const selectFavorite = (state) => state.hotels.favorite;
 export const selectLocation = (state) => state.hotels.location;
 export const selectDate = (state) => state.hotels.date;
 export const selcetDays = (state) => state.hotels.days;
+export const selectPictures = (state) => state.hotels.images;
 
 export default hotelsSlice.reducer;
