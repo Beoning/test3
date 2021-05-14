@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Card.module.css";
 import star from "../../../../img/star.png";
+import badStar from "../../../../img/badStar.png";
 import heart from "../../../../img/heart.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -47,13 +48,55 @@ const Card = (props) => {
         </span>
       </div>
       <div className={style.score}>
-        <div className={style.stars}>
-          <img src={star} alt="" />
-          <img src={star} alt="" />
-          <img src={star} alt="" />
-          <img src={star} alt="" />
-          <img src={star} alt="" />
-        </div>
+        {props.stars === 5 ? (
+          <div className={style.stars}>
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+          </div>
+        ) : props.stars === 4 ? (
+          <div className={style.stars}>
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={badStar} alt="" />
+          </div>
+        ) : props.stars === 3 ? (
+          <div className={style.stars}>
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+          </div>
+        ) : props.stars === 2 ? (
+          <div className={style.stars}>
+            <img src={star} alt="" />
+            <img src={star} alt="" />
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+          </div>
+        ) : props.stars === 1 ? (
+          <div className={style.stars}>
+            <img src={star} alt="" />
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+          </div>
+        ) : (
+          <div className={style.stars}>
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+            <img src={badStar} alt="" />
+          </div>
+        )}
         <div className={style.price}>
           <p>Price:</p>
           <span>{props.price} руб.</span>

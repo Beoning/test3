@@ -1,38 +1,49 @@
 import React, { useState } from "react";
 import Card from "../SharedComponents/Card/Card";
 import style from "./Favorite.module.css";
-import { useSelector } from "react-redux";
-import { selectFavorite } from "../../../redux/reducers/hotels-reducer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectFavorite,
+  sortPriceDown,
+  sortPriceUp,
+  sortStarsDown,
+  sortStarsUp,
+} from "../../../redux/reducers/hotels-reducer";
 
 const Favorite = () => {
+  const dispatch = useDispatch();
   const favorite = useSelector(selectFavorite);
   const [leftTop, setLeftTop] = useState(true);
   const [leftBot, setLeftBot] = useState(false);
   const [rightTop, setRightTop] = useState(false);
   const [rightBot, setRightBot] = useState(false);
-  const togglePriceUp = () => {
+  const toggleHighPrice = () => {
     setLeftBot(false);
     setLeftTop(false);
     setRightBot(true);
     setRightTop(false);
+    dispatch(sortPriceDown());
   };
-  const togglePriceDown = () => {
+  const toggleLowPrice = () => {
     setLeftBot(false);
     setLeftTop(false);
     setRightBot(false);
     setRightTop(true);
+    dispatch(sortPriceUp());
   };
   const toggleRankUp = () => {
     setLeftBot(true);
     setLeftTop(false);
     setRightBot(false);
     setRightTop(false);
+    dispatch(sortStarsDown());
   };
   const toggleRankDown = () => {
     setLeftBot(false);
     setLeftTop(true);
     setRightBot(false);
     setRightTop(false);
+    dispatch(sortStarsUp());
   };
   const favoriteHotels = favorite.map((hotel) => (
     <Card
@@ -40,6 +51,7 @@ const Favorite = () => {
       fullname={hotel.hotelName}
       id={hotel.hotelId}
       price={hotel.priceAvg}
+      stars={hotel.stars}
     />
   ));
   return (
@@ -49,7 +61,7 @@ const Favorite = () => {
         <button
           className={leftTop || leftBot ? style.btnGreen : style.btnWhite}
         >
-          Ретинг
+          Рейтинг
           <div className={style.select}>
             <svg
               width="9"
@@ -92,7 +104,7 @@ const Favorite = () => {
               viewBox="0 0 9 6"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={togglePriceDown}
+              onClick={toggleLowPrice}
               className={rightTop ? style.green : style.white}
             >
               <path
@@ -106,7 +118,7 @@ const Favorite = () => {
               viewBox="0 0 9 7"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={togglePriceUp}
+              onClick={toggleHighPrice}
               className={rightBot ? style.green : style.white}
             >
               <path

@@ -21,6 +21,7 @@ const Hotels = () => {
       key={hotel.hotelId}
       id={hotel.hotelId}
       price={hotel.priceAvg}
+      stars={hotel.stars}
     />
   ));
   return (

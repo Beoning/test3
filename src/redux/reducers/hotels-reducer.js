@@ -51,6 +51,54 @@ const hotelsSlice = createSlice({
         (item) => item.hotelId !== action.payload
       );
     },
+    sortPriceUp: (state) => {
+      state.favorite.sort((a, b) => {
+        if (a.priceAvg > b.priceAvg) {
+          return 1;
+        }
+        if (a.priceAvg < b.priceAvg) {
+          return -1;
+        }
+        return 0;
+      });
+    },
+    sortPriceDown: (state) => {
+      state.favorite
+        .sort((a, b) => {
+          if (a.priceAvg > b.priceAvg) {
+            return 1;
+          }
+          if (a.priceAvg < b.priceAvg) {
+            return -1;
+          }
+          return 0;
+        })
+        .reverse();
+    },
+    sortStarsUp: (state) => {
+      state.favorite.sort((a, b) => {
+        if (a.stars > b.stars) {
+          return 1;
+        }
+        if (a.stars < b.stars) {
+          return -1;
+        }
+        return 0;
+      });
+    },
+    sortStarsDown: (state) => {
+      state.favorite
+        .sort((a, b) => {
+          if (a.stars > b.stars) {
+            return 1;
+          }
+          if (a.stars < b.stars) {
+            return -1;
+          }
+          return 0;
+        })
+        .reverse();
+    },
   },
   extraReducers: {
     [searchHotels.fulfilled]: (state, action) => {
@@ -68,6 +116,10 @@ export const {
   addFavoriteHotel,
   setdays,
   removeFavoriteHotel,
+  sortPriceUp,
+  sortPriceDown,
+  sortStarsUp,
+  sortStarsDown,
 } = hotelsSlice.actions;
 
 export const selectHotels = (state) => state.hotels.hotels;

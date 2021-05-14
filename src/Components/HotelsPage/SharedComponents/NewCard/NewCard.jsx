@@ -14,6 +14,7 @@ const NewCard = (props) => {
         fullname={props.fullname}
         id={props.id}
         price={props.price}
+        stars={props.stars}
       />
     </div>
   );
