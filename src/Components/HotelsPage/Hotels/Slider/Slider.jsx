@@ -18,7 +18,6 @@ const Slider = () => {
       setIndex(nextIndex);
     }
   };
-  console.log((index + 1) % images.length);
   return (
     images.length > 0 && (
       <>
